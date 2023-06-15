@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+
+@tailwind utilities;
+html {
+  scroll-behavior: smooth;
+}
+/* Tailwind directives to your CSS */
+@layer base {
+
+  body {
+    @apply dark:bg-white bg-white;
+  }
+}
+.container-full {
+  @apply max-w-7xl  w-full lg:px-6 md:px-5 xl:px-4 px-4 mx-auto min-w-[320px] ;
+}
+.flex_center {
+  @apply flex justify-center items-center
+}
+
+.button_c {
+  @apply rounded-2xl p-4 hover:scale-105 transition duration-100 ease-linear text-white uppercase font-bold w-full mx-4
+}
+.button_a {
+  @apply rounded-2xl p-4 hover:scale-105 transition duration-100 ease-linear text-white uppercase font-bold w-full
+}
+.tranistion_b {
+  @apply hover:scale-105 transition duration-100 ease-linear
+}
