@@ -1,5 +1,4 @@
-/* eslint-disable no-unsafe-optional-chaining */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../context";
 import QuestionList from "../components/QuestionList";
 import Question from "../components/Question";
@@ -7,16 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Settings from "../components/Settings";
 import Timer from "../components/Timer";
 
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * Math.floor(max));
-};
 
 const Questions = () => {
   const {
     questions,
     questionIndex,
     processedAnswers,
-    selectedAnswers,
+    amount,
     handleSelectedChange,
     handleQuestionIndexChange,
     handleProcessedChange,
@@ -29,7 +25,7 @@ const Questions = () => {
     if (questionIndex - 1 < questions.length) {
       handleQuestionIndexChange(questionIndex - 1);
     } else {
-      navigate("/score");
+      navigate("/result");
     }
   };
   const handleNext = () => {
@@ -38,7 +34,7 @@ const Questions = () => {
       handleSelectedChange("");
     } else {
       console.log("next");
-      navigate("/score");
+      navigate("/result");
     }
   };
 
@@ -59,7 +55,7 @@ const Questions = () => {
             <div className="mb-8 flex justify-between items-center">
               <h1 className="text-gray-700 font-semibold text-3xl">
                 Question {questionIndex + 1}
-                <span className="text-xl text-gray-500">/10</span>
+                <span className="text-xl text-gray-500">/{amount}</span>
               </h1>
               <Timer />
             </div>

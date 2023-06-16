@@ -10,7 +10,6 @@ const Home = () => {
   const {
     amount,
     categoryId,
-    name,
     questions,
     handleCategoryIdChange,
     handleAmountChange,
@@ -18,6 +17,7 @@ const Home = () => {
     getQuestions,
   } = useContext(UserContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const fetchQuestions = async () => {
     try {
@@ -42,10 +42,11 @@ const Home = () => {
       console.log(err);
     }
   };
-  const handleSubmit = () => {
-    console.log("d");
+  const handleSubmit = async () => {
+    setLoading(true);
     fetchQuestions();
     if (questions.length) {
+      setLoading(false);
       navigate("/quiz");
     }
   };
@@ -96,38 +97,35 @@ const Home = () => {
             onClick={() => handleSubmit()}
             className="button_a mt-10 mx-0 bg-green-500"
           >
-            Start
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+                {"loading..."}
+              </div>
+            ) : (
+              "Start"
+            )}
           </button>
         </div>
-        {/* <div className="mt-7 max-w-sm w-full">
-        <Select size="lg" variant="outlined" label="Select Version">
-          {categories.map((item) => (
-            <Option key={item.id}>{item.name}</Option>
-          ))}
-        </Select>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option>Select Category</option>
-          {categories.map((item) => (
-            <option value={item.id} key={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-        <div className="mt-3">
-          <Input
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            size="lg"
-            label="count"
-            type="number"
-            min="1"
-            max="15"
-          />
-        </div>
-        <Button onClick={handleSubmit} className="mt-5 w-full">
-          Start
-        </Button>
-      </div> */}
       </div>
     </div>
   );
