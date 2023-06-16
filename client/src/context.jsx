@@ -52,7 +52,9 @@ const UserContextProvider = ({ children }) => {
   value.handleOutTimeChange = (data) => {
     dispatch({ type: "OUT_TIME", payload: data });
   };
-
+  value.clearData = () => {
+    dispatch({ type: "CLEAR_DATA", });
+  };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 

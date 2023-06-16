@@ -34,7 +34,6 @@ const Timer = () => {
 
     return `${formattedMinutes}:${formattedSeconds}`;
   };
-  console.log("time", time);
   return (
     <div className="flex items-center font-mono text-gray-700 font-semibold text-3xl">
       <h1 className="mr-1">Time:</h1>

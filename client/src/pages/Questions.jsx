@@ -7,6 +7,7 @@ import Settings from "../components/Settings";
 import Timer from "../components/Timer";
 import { sendToResultTelegramBot } from "../api/submit";
 import { formatTime } from "../utils/formatTime";
+import { categories } from "../data/categories";
 
 const Questions = () => {
   const {
@@ -24,7 +25,6 @@ const Questions = () => {
 
   const navigate = useNavigate();
   const answers = questions[questionIndex]?.answers;
-
   const handlePrev = () => {
     if (questionIndex - 1 < questions.length) {
       handleQuestionIndexChange(questionIndex - 1);
@@ -37,37 +37,19 @@ const Questions = () => {
       handleQuestionIndexChange(questionIndex + 1);
       handleSelectedChange("");
     } else {
-      let data = {
-        name,
-        amount,
-        score: processedAnswers.filter(({ isCorrect }) => isCorrect).length,
-        categoryId,
-        time: formatTime(time),
-      };
-      console.log(data);
-      sendToResultTelegramBot(data);
+      handleProcessedChange();
       navigate("/result");
     }
   };
 
-  const handleResult = () => {
+  const handleResult = async () => {
     handleProcessedChange();
-    let data = {
-      name,
-      amount,
-      score: processedAnswers.filter(({ isCorrect }) => isCorrect).length,
-      categoryId,
-      time: formatTime(time),
-    };
-    console.log(data);
-    sendToResultTelegramBot(data);
   };
   useEffect(() => {
     if (!questions.length) {
       navigate("/");
     }
-  }, [navigate, questions]);
-  console.log("proc", processedAnswers);
+  }, []);
   return (
     <div className="w-full bg_color">
       <div className="container-full min-h-screen  grid grid-cols-8">

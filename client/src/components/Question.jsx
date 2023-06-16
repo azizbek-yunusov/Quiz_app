@@ -70,15 +70,9 @@ const Question = ({ answers }) => {
     }
     return "";
   };
-  console.log("selected:",selectedAnswers);
-  useEffect(() => {
-    
-  }, [])
-  console.log(questionIndex);
   const selectedAnswer = selectedAnswers?.find((item) => (
     item.index === questionIndex
   ))
-    console.log("sss", selectedAnswer);
   return (
     <div className="">
       <div className="flex border-b border-b-gray-300 pb-7">
@@ -100,10 +94,10 @@ const Question = ({ answers }) => {
             onClick={(e) =>
               handleClickAnswer(e, questions[questionIndex]?.question)
             }
-            className={` flex p-5 px-8 cursor-pointer border-2 tranistion_b font-semibold border-gray-300 justify-start items-center rounded-2xl bg-gray-100 ${
+            className={` flex p-5 px-8 cursor-pointer border-2 tranistion_b font-semibold border-gray-300 justify-start items-center rounded-2xl  ${
               selectedAnswer?.answer == item
                 ? "bg-purple-500 text-white"
-                : ""
+                : "bg-gray-100 text-zinc-800"
             } `}
             dangerouslySetInnerHTML={{ __html: item }}
           ></button>

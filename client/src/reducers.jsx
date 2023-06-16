@@ -55,11 +55,27 @@ export function reducer(state, { type, payload }) {
       };
     }
     case "OUT_TIME": {
-      let time = (state.questions.length * 60) - payload;
-      console.log(time);
+      let time = state.questions.length * 60 - payload;
       return {
         ...state,
         time: time,
+      };
+    }
+    case "CLEAR_DATA": {
+      return {
+        ...state,
+        time: "",
+        name: "",
+        amount: 0,
+        categoryId: "",
+        question: {},
+        selected: "",
+        options: [],
+        questionIndex: 0,
+        questions: [],
+        score: 0,
+        selectedAnswers: [],
+        processedAnswers: [],
       };
     }
     case "PROCESSED_ANWERS_CHANGE": {

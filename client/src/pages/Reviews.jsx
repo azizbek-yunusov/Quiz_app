@@ -1,27 +1,21 @@
 /* eslint-disable no-unsafe-optional-chaining */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../context";
-import QuestionList from "../components/QuestionList";
-import Question from "../components/Question";
 import { Link, useNavigate } from "react-router-dom";
 import Settings from "../components/Settings";
-import Timer from "../components/Timer";
-
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * Math.floor(max));
-};
+import { formatTime } from "../utils/formatTime";
+import { categories } from "../data/categories";
 
 const Reviews = () => {
-  const { questions, processedAnswers, questionIndex, amount, name } =
+  const { clearData, processedAnswers, time, amount, name, categoryId } =
     useContext(UserContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!questions.length) {
-      navigate("/");
-    }
-  }, [navigate, questions]);
-  console.log(processedAnswers);
+  const categoryType = categories.find((item) => item.id == categoryId)
+  const clearDataHome = () => {
+    clearData();
+    navigate("/");
+  };
   return (
     <div className="w-full bg_color">
       <div className="container-full min-h-screen  grid grid-cols-8 overflow-hidden">
@@ -72,36 +66,32 @@ const Reviews = () => {
             </div>
           </div>
         </div>
-        <div className="md:hidden lg:flex flex-col justify-between col-span-3 bg-white xl:mx-5 md:m-5 xl:my-14 my-8 p-10 rounded-3xl shadow-xl">
+        <div className="sm:hidden lg:flex flex-col justify-between col-span-3 bg-white xl:mx-5 md:m-5 xl:my-14 my-8 p-10 rounded-3xl shadow-xl">
           <div className="">
             <h1 className="text-gray-700 text-center font-semibold text-3xl mb-6">
               Result
             </h1>
             {/* <QuestionList /> */}
             <div className="flex justify-between">
-              <ul className="space-y-6 text-xl font-semibold text-zinc-800">
+              <ul className="space-y-6 text-xl font-semibold text-zinc-600">
                 <li>Name:</li>
                 <li>Category:</li>
-                <li>Amont:</li>
-                <li>Score:</li>
+                <li>Amount:</li>
+                <li>Time:</li>
                 <li>Score:</li>
               </ul>
-              <ul className="space-y-6 text-xl font-semibold text-zinc-800">
+              <ul className="space-y-6 text-xl font-semibold text-right text-zinc-800">
                 <li>{name}</li>
-                <li>Category:</li>
-                <li>{amount}:</li>
-                <li>Score:</li>
-                <li>Score:</li>
+                <li>{categoryType.name}</li>
+                <li>{amount}</li>
+                <li>{formatTime(time)}</li>
+                <li>{processedAnswers.filter(({ isCorrect }) => isCorrect).length}</li>
               </ul>
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <Link to={"/result"} className="w-full">
-              <button className="button_c bg-blue-500">Back</button>
-            </Link>
-            <Link to={"/"} className="w-full">
-              <button className="button_c bg-orange-500">Home</button>
-            </Link>
+            <button className="button_a mr-5 bg-blue-500" onClick={() => navigate(-1)}>Back</button>
+              <button onClick={() => clearDataHome()} className="button_a  bg-orange-500">Home</button>
           </div>
         </div>
       </div>
