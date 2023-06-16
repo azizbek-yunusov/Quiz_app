@@ -5,11 +5,15 @@ import Question from "../components/Question";
 import { Link, useNavigate } from "react-router-dom";
 import Settings from "../components/Settings";
 import Timer from "../components/Timer";
-
+import { sendToResultTelegramBot } from "../api/submit";
+import { formatTime } from "../utils/formatTime";
 
 const Questions = () => {
   const {
+    categoryId,
     questions,
+    name,
+    time,
     questionIndex,
     processedAnswers,
     amount,
@@ -33,13 +37,30 @@ const Questions = () => {
       handleQuestionIndexChange(questionIndex + 1);
       handleSelectedChange("");
     } else {
-      console.log("next");
+      let data = {
+        name,
+        amount,
+        score: processedAnswers.filter(({ isCorrect }) => isCorrect).length,
+        categoryId,
+        time: formatTime(time),
+      };
+      console.log(data);
+      sendToResultTelegramBot(data);
       navigate("/result");
     }
   };
 
   const handleResult = () => {
     handleProcessedChange();
+    let data = {
+      name,
+      amount,
+      score: processedAnswers.filter(({ isCorrect }) => isCorrect).length,
+      categoryId,
+      time: formatTime(time),
+    };
+    console.log(data);
+    sendToResultTelegramBot(data);
   };
   useEffect(() => {
     if (!questions.length) {
@@ -92,9 +113,9 @@ const Questions = () => {
             <QuestionList />
           </div>
           <Link to={"/result"} className="w-full">
-          <button onClick={handleResult} className="button_c bg-green-500">
-            Finish
-          </button>
+            <button onClick={handleResult} className="button_c bg-green-500">
+              Finish
+            </button>
           </Link>
         </div>
       </div>

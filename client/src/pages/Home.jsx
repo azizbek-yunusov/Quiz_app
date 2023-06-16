@@ -1,4 +1,3 @@
-import { Button, Input } from "@material-tailwind/react";
 import { categories } from "../data/categories";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
