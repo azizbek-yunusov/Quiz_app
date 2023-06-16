@@ -12,7 +12,7 @@ const getRandomInt = (max) => {
 };
 
 const Reviews = () => {
-  const { questions, processedAnswers, questionIndex } =
+  const { questions, processedAnswers, questionIndex, amount, name } =
     useContext(UserContext);
   const navigate = useNavigate();
 
@@ -28,9 +28,7 @@ const Reviews = () => {
         <div className="lg:col-span-5 md:col-span-8 flex flex-col justify-between bg-white xl:mx-5 md:m-5 xl:my-14 my-8 p-10  rounded-3xl shadow-2xl">
           <div className=" h-[500px]">
             <div className="mb-8 flex justify-center">
-              <h1 className="text-gray-700 font-semibold text-3xl">
-                Reviews
-              </h1>
+              <h1 className="text-gray-700 font-semibold text-3xl">Reviews</h1>
               {/* <Timer /> */}
             </div>
             <div className="flex flex-col overflow-y-scroll h-[400px]">
@@ -74,18 +72,37 @@ const Reviews = () => {
             </div>
           </div>
         </div>
-        <div className="md:hidden lg:flex flex-col justify-between items-center col-span-3 bg-white xl:mx-5 md:m-5 xl:my-14 my-8 p-10 rounded-3xl shadow-xl">
+        <div className="md:hidden lg:flex flex-col justify-between col-span-3 bg-white xl:mx-5 md:m-5 xl:my-14 my-8 p-10 rounded-3xl shadow-xl">
           <div className="">
             <h1 className="text-gray-700 text-center font-semibold text-3xl mb-6">
               Result
             </h1>
             {/* <QuestionList /> */}
+            <div className="flex justify-between">
+              <ul className="space-y-6 text-xl font-semibold text-zinc-800">
+                <li>Name:</li>
+                <li>Category:</li>
+                <li>Amont:</li>
+                <li>Score:</li>
+                <li>Score:</li>
+              </ul>
+              <ul className="space-y-6 text-xl font-semibold text-zinc-800">
+                <li>{name}</li>
+                <li>Category:</li>
+                <li>{amount}:</li>
+                <li>Score:</li>
+                <li>Score:</li>
+              </ul>
+            </div>
           </div>
-          {/* <Link to={"/score"} className="w-full">
-            <button onClick={handleNext} className="button_c bg-green-500">
-              Finish
-            </button>
-          </Link> */}
+          <div className="flex justify-between items-center">
+            <Link to={"/result"} className="w-full">
+              <button className="button_c bg-blue-500">Back</button>
+            </Link>
+            <Link to={"/"} className="w-full">
+              <button className="button_c bg-orange-500">Home</button>
+            </Link>
+          </div>
         </div>
       </div>
       <Settings />
