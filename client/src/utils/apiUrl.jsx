@@ -1,2 +1,2 @@
 export const apiUrl = "https://opentdb.com/api.php"
-export const serverUrl = "http://localhost:5000"
+export const serverUrl = "https://sdsd-zbjj.onrender.com"
