@@ -79,7 +79,7 @@ const Reviews = () => {
               </ul>
               <ul className="space-y-6 text-xl font-semibold text-right text-zinc-800">
                 <li>{name}</li>
-                <li>{categoryType.name}</li>
+                <li>{categoryType?.name}</li>
                 <li>{amount}</li>
                 <li>{formatTime(time)}</li>
                 <li>

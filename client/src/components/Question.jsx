@@ -64,7 +64,7 @@ const Question = ({ answers }) => {
   return (
     <div className="">
       <div className="flex border-b border-b-gray-300 pb-7">
-        <span className="font-bold text-2xl text-gray-700 mr-1">
+        <span className="font-bold md:text-2xl text-xl text-gray-700 mr-1">
           {" "}
           {questionIndex + 1}.{" "}
         </span>
@@ -72,10 +72,10 @@ const Question = ({ answers }) => {
           dangerouslySetInnerHTML={{
             __html: questions[questionIndex]?.question,
           }}
-          className="font-semibold text-2xl text-gray-700"
+          className="font-semibold md:text-2xl text-xl text-gray-700"
         />
       </div>
-      <div className="grid grid-cols-2 gap-6 my-8">
+      <div className="grid grid-cols-2 md:gap-6 gap-4 md:my-8 my-4">
         {answers?.map((item) => (
           <button
             key={item}

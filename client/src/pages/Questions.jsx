@@ -3,7 +3,6 @@ import { UserContext } from "../context";
 import QuestionList from "../components/QuestionList";
 import Question from "../components/Question";
 import { Link, useNavigate } from "react-router-dom";
-import Settings from "../components/Settings";
 import Timer from "../components/Timer";
 
 const Questions = () => {
@@ -46,12 +45,12 @@ const Questions = () => {
   return (
     <div className="w-full bg_color">
       <div className="container-full min-h-screen  grid grid-cols-8">
-        <div className="lg:col-span-5 md:col-span-8 flex flex-col justify-between bg-white xl:mx-5 md:m-5 xl:my-14 my-8 p-10  rounded-3xl shadow-2xl">
+        <div className="lg:col-span-5 col-span-8 flex flex-col justify-between bg-white xl:mx-5 md:m-5 xl:my-14 my-8 md:p-10 p-5  rounded-3xl shadow-2xl">
           <div className="">
             <div className="mb-8 flex justify-between items-center">
-              <h1 className="text-gray-700 font-semibold text-3xl">
+              <h1 className="text-gray-700 font-semibold md:text-3xl text-2xl">
                 Question {questionIndex + 1}
-                <span className="text-xl text-gray-500">/{amount}</span>
+                <span className="md:text-xl text-sm text-gray-500">/{amount}</span>
               </h1>
               <Timer />
             </div>
@@ -79,7 +78,7 @@ const Questions = () => {
             </button>
           </div>
         </div>
-        <div className="md:hidden lg:flex flex-col justify-between items-center col-span-3 bg-white xl:mx-5 md:m-5 xl:my-14 my-8 p-10 rounded-3xl shadow-xl">
+        <div className="hidden lg:flex flex-col justify-between items-center col-span-3 bg-white xl:mx-5 md:m-5 xl:my-14 my-8 md:p-10 rounded-3xl shadow-xl">
           <div className="">
             <h1 className="text-gray-700 text-center font-semibold text-3xl mb-6">
               Question list
@@ -93,7 +92,7 @@ const Questions = () => {
           </Link>
         </div>
       </div>
-      <Settings />
+      {/* <Settings /> */}
     </div>
   );
 };

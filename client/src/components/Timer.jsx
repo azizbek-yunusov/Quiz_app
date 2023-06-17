@@ -35,7 +35,7 @@ const Timer = () => {
     return `${formattedMinutes}:${formattedSeconds}`;
   };
   return (
-    <div className="flex items-center font-mono text-gray-700 font-semibold text-3xl">
+    <div className="flex items-center font-mono text-gray-700 font-semibold md:text-3xl text-2xl">
       <h1 className="mr-1">Time:</h1>
       <p
         className={`${

@@ -77,6 +77,8 @@ const Home = () => {
             onChange={(e) => handleCategoryIdChange(e.target.value)}
             className="pl-5 outline-none mt-7 bg-white border border-gray-300 w-full rounded-xl py-3 text-lg"
           >
+            <option>Select category</option>
+
             {categories.map((item) => (
               <option value={item.id} key={item.id}>
                 {item.name}
@@ -89,6 +91,7 @@ const Home = () => {
             onChange={(e) => handleAmountChange(e.target.value)}
             className="pl-5 outline-none mt-7 bg-white border border-gray-300 w-full rounded-xl py-3 text-lg"
           >
+            <option>Select amount</option>
             <option value={5}>5</option>
             <option value={10}>10</option>
             <option value={15}>15</option>
