@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context";
 
 const Question = ({ answers }) => {
@@ -7,15 +7,12 @@ const Question = ({ answers }) => {
     selectedAnswers,
     questionIndex,
     score,
-    selected,
     handleScoreChange,
     handleSelectedChange,
-    handleChecksChange,
     handleSelectedAnswersChange,
   } = useContext(UserContext);
   let question = questions[questionIndex];
 
-  const [processedAnswers, setProcessedAnswers] = useState([]);
 
 
   const handleClickAnswer = (e, selectedQuestion) => {
@@ -61,15 +58,6 @@ const Question = ({ answers }) => {
     }
   };
 
-  const relatedAnswer = (question, selectedAnswers) => {
-    if (selectedAnswers && selectedAnswers.length) {
-      const relatedQuestion = selectedAnswers.find(
-        (answer) => answer.question === question
-      );
-      return (relatedQuestion && relatedQuestion.answer) || "";
-    }
-    return "";
-  };
   const selectedAnswer = selectedAnswers?.find((item) => (
     item.index === questionIndex
   ))

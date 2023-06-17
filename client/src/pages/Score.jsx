@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import  { useContext, useEffect } from "react";
 import { UserContext } from "../context";
 import { Link, useNavigate } from "react-router-dom";
 import { sendToResultTelegramBot } from "../api/submit";

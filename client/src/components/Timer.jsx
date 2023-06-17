@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context";
 import { useNavigate } from "react-router-dom";
 
 const Timer = () => {
-  const { questions, handleProcessedChange, time, handleOutTimeChange } =
+  const { questions, handleProcessedChange, handleOutTimeChange } =
     useContext(UserContext);
   const navigate = useNavigate();
   let quizTime = questions.length * 60;

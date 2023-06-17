@@ -8,9 +8,6 @@ const QuestionList = () => {
     questions,
     questionIndex,
   } = useContext(UserContext);
-  console.log("qeus", questionIndex);
-  const selectedAnswer = (itemIndex) =>
-    selectedAnswers?.find((item) => item.index == itemIndex);
 
   return (
     <div className="grid xl:grid-cols-4 md:grid-cols-3 gap-4">

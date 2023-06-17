@@ -1,7 +1,6 @@
-/* eslint-disable no-unsafe-optional-chaining */
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Settings from "../components/Settings";
 import { formatTime } from "../utils/formatTime";
 import { categories } from "../data/categories";
@@ -11,7 +10,7 @@ const Reviews = () => {
     useContext(UserContext);
   const navigate = useNavigate();
 
-  const categoryType = categories.find((item) => item.id == categoryId)
+  const categoryType = categories.find((item) => item.id == categoryId);
   const clearDataHome = () => {
     clearData();
     navigate("/");
@@ -23,7 +22,6 @@ const Reviews = () => {
           <div className=" h-[500px]">
             <div className="mb-8 flex justify-center">
               <h1 className="text-gray-700 font-semibold text-3xl">Reviews</h1>
-              {/* <Timer /> */}
             </div>
             <div className="flex flex-col overflow-y-scroll h-[400px]">
               {processedAnswers.map((item, index) => (
@@ -71,7 +69,6 @@ const Reviews = () => {
             <h1 className="text-gray-700 text-center font-semibold text-3xl mb-6">
               Result
             </h1>
-            {/* <QuestionList /> */}
             <div className="flex justify-between">
               <ul className="space-y-6 text-xl font-semibold text-zinc-600">
                 <li>Name:</li>
@@ -85,13 +82,25 @@ const Reviews = () => {
                 <li>{categoryType.name}</li>
                 <li>{amount}</li>
                 <li>{formatTime(time)}</li>
-                <li>{processedAnswers.filter(({ isCorrect }) => isCorrect).length}</li>
+                <li>
+                  {processedAnswers.filter(({ isCorrect }) => isCorrect).length}
+                </li>
               </ul>
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <button className="button_a mr-5 bg-blue-500" onClick={() => navigate(-1)}>Back</button>
-              <button onClick={() => clearDataHome()} className="button_a  bg-orange-500">Home</button>
+            {/* <button
+              className="button_a mr-5 bg-blue-500"
+              onClick={() => navigate(-1)}
+            >
+              Back
+            </button> */}
+            <button
+              onClick={() => clearDataHome()}
+              className="button_a  bg-orange-500"
+            >
+              Home
+            </button>
           </div>
         </div>
       </div>

@@ -5,18 +5,11 @@ import Question from "../components/Question";
 import { Link, useNavigate } from "react-router-dom";
 import Settings from "../components/Settings";
 import Timer from "../components/Timer";
-import { sendToResultTelegramBot } from "../api/submit";
-import { formatTime } from "../utils/formatTime";
-import { categories } from "../data/categories";
 
 const Questions = () => {
   const {
-    categoryId,
     questions,
-    name,
-    time,
     questionIndex,
-    processedAnswers,
     amount,
     handleSelectedChange,
     handleQuestionIndexChange,
@@ -84,7 +77,6 @@ const Questions = () => {
             >
               {questionIndex + 1 < questions?.length ? "next" : "finish"}
             </button>
-            {/* score {score} */}
           </div>
         </div>
         <div className="md:hidden lg:flex flex-col justify-between items-center col-span-3 bg-white xl:mx-5 md:m-5 xl:my-14 my-8 p-10 rounded-3xl shadow-xl">
